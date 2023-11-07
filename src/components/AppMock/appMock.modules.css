@@ -1,0 +1,29 @@
+.mock {
+  height: 100vh;
+  background-position: center;
+  background-size: contain;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mock-wrapper {
+  height: 50vh;
+  flex-direction: column;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.playerWrap {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  max-width: 600px;
+  align-items: center;
+}
+
+.player {
+  width: 100%;
+  cursor: pointer;
+}
