@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Button } from "../../../../common/Button";
-import AudioVisualizer from "../Visualizer";
+// import AudioVisualizer from "../Visualizer";
 
 interface AudioPlayerProps {
   src: string;
@@ -8,7 +8,7 @@ interface AudioPlayerProps {
 
 export const AudioPlayer: React.FC<AudioPlayerProps> = ({ src }) => {
   const audioRef = useRef<HTMLAudioElement>(null);
-  const [played, setPlayed] = useState(false);
+  //const [played, setPlayed] = useState(false);
   const [playing, setPlaying] = useState(false);
 
   useEffect(() => {
@@ -25,7 +25,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({ src }) => {
       console.error("current is not available on audioRef");
       return;
     }
-    setPlayed(true);
+    //setPlayed(true);
     audioRef.current.play();
   };
 
