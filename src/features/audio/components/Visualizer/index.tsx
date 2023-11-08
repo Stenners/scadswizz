@@ -11,7 +11,6 @@ const AudioVisualizer: React.FC<AudioVisualizerProps> = ({
   audioRef,
   played = false,
 }) => {
-  const [init, setInit] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   let audioContext: AudioContext;
 
