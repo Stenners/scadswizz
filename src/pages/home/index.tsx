@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import { AudioPlayer } from "../../features/audio/components/AudioPlayer";
 
 export const HomePage = () => {
   const [searchParams] = useSearchParams();
@@ -11,5 +12,10 @@ export const HomePage = () => {
       navigate("/login");
     }
   }, []);
-  return <div>home</div>;
+
+  return (
+    <div>
+      <AudioPlayer src={``} />
+    </div>
+  );
 };
