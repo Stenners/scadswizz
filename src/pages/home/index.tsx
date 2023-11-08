@@ -11,7 +11,7 @@ export const HomePage = () => {
     if (!eid) {
       navigate("/login");
     }
-  }, []);
+  });
 
   return (
     <div>
