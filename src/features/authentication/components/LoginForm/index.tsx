@@ -20,20 +20,26 @@ export const LoginForm: React.FC = () => {
   };
 
   return (
-    <div className="bg-white py-12 rounded-l shadow-xl w-full md:w-1/2 flex items-center flex-col">
+    <div className="py-12 w-full md:w-1/2 lg:w-1/3 xl:w-1/4 flex items-center flex-col">
       <Logo />
-      <p className="text-center mt-6 mb-5 w-1/2">
+      <p className="text-center mt-6 mb-5 w-full w-full">
         Welcome to the custom ad server demo. Use your sca email address to
         access the portal.
       </p>
-      <form>
-        <TextInput
-          value={email}
-          placeholder="Email Address"
-          onChange={handleUpdateEmail}
-          className="mb-3"
-        />
-        <Button onClick={handleSubmit}>Get Started</Button>
+      <form className="w-full">
+        <div className="h-14 mb-2">
+          <TextInput
+            value={email}
+            placeholder="Email Address"
+            onChange={handleUpdateEmail}
+            className="mb-3 h-full"
+          />
+        </div>
+        <div className="h-full">
+          <Button className="h-full" onClick={handleSubmit}>
+            Get Started
+          </Button>
+        </div>
       </form>
     </div>
   );

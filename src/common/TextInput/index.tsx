@@ -8,8 +8,8 @@ export const TextInput: React.FC<TextInputProps> = ({ className, ...rest }) => {
       type="text"
       {...rest}
       className={classNames(
-        className,
-        "h-[50px] w-full px-3 py-1 rounded-l border-2"
+        "h-[50px] w-full px-3 py-1 rounded-l border-2",
+        className
       )}
     />
   );
