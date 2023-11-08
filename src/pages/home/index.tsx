@@ -14,8 +14,13 @@ export const HomePage = () => {
   });
 
   return (
-    <div>
-      <AudioPlayer src={``} />
+    <div className="w-full flex justify-center">
+      <div className="py-12 w-full md:w-1/2 lg:w-1/3 xl:w-1/4 flex items-center justify-center flex-col">
+        <AudioPlayer
+          src={`
+        /audio/5mg.mp3`}
+        />
+      </div>
     </div>
   );
 };
