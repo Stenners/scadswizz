@@ -43,7 +43,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({ src }) => {
       <audio src={src} ref={audioRef}>
         Your browser does not support the audio element.
       </audio>
-      <AudioVisualizer audioRef={audioRef} played={played} />
+      {/* <AudioVisualizer audioRef={audioRef} played={played} /> */}
       <Button onClick={playing ? handlePause : handlePlay}>
         {playing ? "pause" : "play"}
       </Button>
