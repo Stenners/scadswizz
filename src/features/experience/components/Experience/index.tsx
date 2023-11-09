@@ -4,7 +4,11 @@ import { LoadingScreen } from "../LoadingScreen";
 import { PlayerScreen } from "../PlayerScreen";
 import { Transition } from "../../../../common/Transition";
 
-export const Experience: React.FC = () => {
+interface ExperienceProps {
+  eid: string;
+}
+
+export const Experience: React.FC<ExperienceProps> = ({ eid }) => {
   const { start, ready } = useExperienceContext();
 
   useEffect(() => {
@@ -14,7 +18,7 @@ export const Experience: React.FC = () => {
   if (ready) {
     return (
       <Transition>
-        <PlayerScreen></PlayerScreen>
+        <PlayerScreen eid={eid}></PlayerScreen>
       </Transition>
     );
   }

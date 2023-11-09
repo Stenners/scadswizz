@@ -23,9 +23,9 @@ export const PlayButton: React.FC<PlayButtonProps> = ({
         <img
           alt=""
           src="/pause.png"
-          height="30px"
-          width="30px"
-          className="h-[30px] w-[30px]"
+          height="40px"
+          width="40px"
+          className="h-[40px] w-[40px]"
         />
       ) : (
         <img

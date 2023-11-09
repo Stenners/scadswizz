@@ -2,8 +2,8 @@ import { useState } from "react";
 import { Button } from "../../../../common/Button";
 import { TextInput } from "../../../../common/TextInput";
 import { useNavigate } from "react-router-dom";
-import isEmail from "validator/lib/isEmail";
 import { FadeIn } from "../../../../common/FadeIn";
+import { validateEmail } from "../../../../common/helpers/validation";
 
 export const LoginForm: React.FC = () => {
   const navigate = useNavigate();
@@ -21,12 +21,6 @@ export const LoginForm: React.FC = () => {
     } else {
       navigate(`/?eid=${email}`);
     }
-  };
-
-  const validateEmail = (email: string) => {
-    if (!isEmail(email)) return false;
-    if (!/@sca.com.au\s*$/.test(email)) return false;
-    return true;
   };
 
   const handleUpdateEmail = (e: React.FormEvent<HTMLInputElement>) => {
