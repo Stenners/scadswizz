@@ -14,7 +14,7 @@ export const PlayButton: React.FC<PlayButtonProps> = ({
   return (
     <button
       className={classNames(
-        "rounded-full py-3 px-8 bg-emerald-400 text-white hover:bg-emerald-500 transition-all focus:border-5 disabled:bg-gray-300 flex items-center justify-center",
+        "rounded-full py-3 px-8 bg-main text-white hover:bg-emerald-500 transition-all focus:border-5 disabled:bg-gray-300 flex items-center justify-center",
         className
       )}
       {...rest}

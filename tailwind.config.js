@@ -3,6 +3,9 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      colors: {
+        main: "#ee2c73",
+      },
       keyframes: {
         pan: {
           "0%": { transform: "translateX(-100px)" },

@@ -38,7 +38,7 @@ export const PlayerScreen = () => {
           <FadeIn delay={0.45}>you're</FadeIn>
           now listening to{" "}
           <FadeIn delay={0.75} direction="left">
-            <strong className="text-emerald-500">SCADSWIZZ</strong>
+            <strong className="text-main">SCADSWIZZ</strong>
           </FadeIn>{" "}
           radio
         </h1>
