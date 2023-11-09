@@ -3,6 +3,7 @@ import { Button } from "../../../../common/Button";
 import { TextInput } from "../../../../common/TextInput";
 import { useNavigate } from "react-router-dom";
 import isEmail from "validator/lib/isEmail";
+import { FadeIn } from "../../../../common/FadeIn";
 
 export const LoginForm: React.FC = () => {
   const navigate = useNavigate();
@@ -44,32 +45,36 @@ export const LoginForm: React.FC = () => {
         alt="listnrlogo"
         className="mb-10"
       />
-      <p className="text-center mb-10 w-full w-full">
-        Welcome to the <strong>SCADSWIZZ</strong> demo
-        <br />
-        <br /> Let's get started, try signing in with your <strong>
-          SCA
-        </strong>{" "}
-        email!
-      </p>
+      <FadeIn delay={0.15}>
+        <p className="text-center mb-10 w-full w-full">
+          Welcome to the <strong>SCADSWIZZ</strong> demo
+          <br />
+          <br /> Let's get started, try signing in with your{" "}
+          <strong>SCA</strong> email!
+        </p>
+      </FadeIn>
       <form className="w-full">
-        <div className="h-14 mb-2">
-          <TextInput
-            value={email}
-            placeholder="Email Address"
-            onChange={handleUpdateEmail}
-            className="mb-3 h-full"
-          />
-        </div>
-        <div className="h-full">
-          <Button
-            className="h-full"
-            onClick={handleSubmit}
-            disabled={!email || !!error}
-          >
-            Get Started
-          </Button>
-        </div>
+        <FadeIn delay={0.3} direction="up">
+          <div className="h-14 mb-2">
+            <TextInput
+              value={email}
+              placeholder="Email Address"
+              onChange={handleUpdateEmail}
+              className="mb-3 h-full"
+            />
+          </div>
+        </FadeIn>
+        <FadeIn delay={0.45} direction="up">
+          <div className="h-full">
+            <Button
+              className="h-full"
+              onClick={handleSubmit}
+              disabled={!email || !!error}
+            >
+              Get Started
+            </Button>
+          </div>
+        </FadeIn>
         <div className="flex items-center justify-center pt-6">
           <span className="text-red-500 text-center">{error}</span>
         </div>
