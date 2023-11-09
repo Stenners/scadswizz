@@ -72,7 +72,7 @@ export const LoginForm: React.FC = () => {
           </div>
         </FadeIn>
         <FadeIn delay={0.45} direction="up">
-          <div className="h-full">
+          <div className="h-14">
             <Button
               className="h-full uppercase font-semibold text-sm"
               onClick={handleSubmit}
