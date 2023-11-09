@@ -29,7 +29,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
     audioRef.current.onloadeddata = () => {
       onDurationUpdate(audioRef?.current?.duration ?? 0);
     };
-  }, []);
+  });
 
   const handlePlay = () => {
     if (!audioRef.current) {

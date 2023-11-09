@@ -7,7 +7,7 @@ import { PlayerBar } from "../../../audio/components/PlayerBar";
 
 export const PlayerScreen = () => {
   const { streams } = useExperienceContext();
-  const [audioEnded, setAudioEnded] = useState(false);
+  //   const [audioEnded, setAudioEnded] = useState(false);
   const [audioDuration, setAudioDuration] = useState(0);
   const [audioTime, setAudioTime] = useState(0);
 
@@ -62,10 +62,10 @@ export const PlayerScreen = () => {
             built server
           </p>
         </FadeIn>
-        <div className="py-12 w-full flex items-center justify-center flex-col gap-10">
+        <div className="py-12 w-full flex items-center justify-center flex-col gap-10 mb-48">
           {renderStreams()}
         </div>
-        {audioEnded && (
+        {
           <InView>
             <FadeIn delay={0.15}>
               <h1 className="text-5xl font-bold mb-3 text-right">
@@ -73,7 +73,7 @@ export const PlayerScreen = () => {
               </h1>
             </FadeIn>
           </InView>
-        )}
+        }
       </div>
     </div>
   );
