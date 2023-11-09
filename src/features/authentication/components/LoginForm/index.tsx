@@ -49,11 +49,11 @@ export const LoginForm: React.FC = () => {
       />
       <FadeIn delay={0.15}>
         <div className="text-center w-full w-full">
-          <h1 className="text-xl">
+          <h1 className="text-xl mb-1">
             <strong className="text-emerald-500">SCADSWIZZ</strong>
             <br />
           </h1>
-          <p className="mb-10 opacity-50 text-sm">(demo)</p>
+          <p className="mb-10 opacity-75 text-sm">🚧 DEMO 🚧</p>
           <p className="mb-5">
             Let's get started! Try signing in with your <strong>SCA</strong>{" "}
             email...
