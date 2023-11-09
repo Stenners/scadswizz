@@ -35,7 +35,9 @@ export const PlayerScreen = () => {
                 custom server
               </p>
             </FadeIn>
-            <PlayerBar time={audioTime} duration={audioDuration} />
+            <FadeIn direction="up" delay={baseDelay + 0.45}>
+              <PlayerBar time={audioTime} duration={audioDuration} />
+            </FadeIn>
           </div>
         </div>
       );
