@@ -35,9 +35,7 @@ export const PlayerScreen = () => {
     <div>
       <FadeIn delay={0.15}>
         <h1 className="text-5xl font-bold mb-3">
-          <FadeIn delay={0.45}>
-            <span className="text-black">you're</span>
-          </FadeIn>{" "}
+          <FadeIn delay={0.45}>you're</FadeIn>
           now listening to{" "}
           <FadeIn delay={0.75} direction="left">
             <strong className="text-emerald-500">SCADSWIZZ</strong>
