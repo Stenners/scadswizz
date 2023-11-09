@@ -5,8 +5,10 @@ module.exports = {
     extend: {
       keyframes: {
         pan: {
-          "0%": { transform: "translateX(0) rotate(270deg)" },
-          "100%": { transform: "translateX(100px) rotate(270deg)" },
+          "0%": { transform: "translateX(-100px)" },
+          "100%": {
+            transform: "translateX(0px)",
+          },
         },
       },
       animation: {
