@@ -13,13 +13,19 @@ export const LoginForm: React.FC = () => {
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
 
-    if (!isEmail(email)) {
+    if (!validateEmail(email)) {
       setError(
-        "Hey! We need a valid email to start your stream, please enter a valid email address"
+        "Hey! We need a valid email to sign you in, please enter a valid SCA email address"
       );
     } else {
       navigate(`/?eid=${email}`);
     }
+  };
+
+  const validateEmail = (email: string) => {
+    if (!isEmail(email)) return false;
+    if (!/@sca.com.au\s*$/.test(email)) return false;
+    return true;
   };
 
   const handleUpdateEmail = (e: React.FormEvent<HTMLInputElement>) => {
@@ -39,8 +45,12 @@ export const LoginForm: React.FC = () => {
         className="mb-10"
       />
       <p className="text-center mb-10 w-full w-full">
-        Welcome to the custom ad server demo. Use your sca email address to
-        access the portal.
+        Welcome to the <strong>SCADSWIZZ</strong> demo
+        <br />
+        <br /> Let's get started, try signing in with your <strong>
+          SCA
+        </strong>{" "}
+        email!
       </p>
       <form className="w-full">
         <div className="h-14 mb-2">
