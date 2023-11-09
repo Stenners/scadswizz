@@ -15,6 +15,7 @@ export const PlayerScreen = () => {
   const [audioRef, setAudioRef] = useState<RefObject<HTMLAudioElement> | null>(
     null
   );
+  const [played, setPlayed] = useState(false);
 
   console.log("streamUrl: ", streamUrl);
 
@@ -52,6 +53,7 @@ export const PlayerScreen = () => {
                   onTimeUpdate={(time) => {}}
                   onDurationUpdate={(time) => {}}
                   onSetAudioRef={(audioRef) => setAudioRef(audioRef)}
+                  onPlayed={() => setPlayed(true)}
                 />
               </FadeIn>
             </div>
@@ -66,7 +68,7 @@ export const PlayerScreen = () => {
                 </p>
               </FadeIn>
               <FadeIn direction="up" delay={1 + 0.45}>
-                <AudioVisualizer audioRef={audioRef} played={true} />
+                <AudioVisualizer audioRef={audioRef} played={played} />
               </FadeIn>
             </div>
           </div>
