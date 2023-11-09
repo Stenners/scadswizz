@@ -18,6 +18,6 @@ code {
 
 @layer components {
   html {
-    @apply bg-slate-100;
+    @apply bg-slate-100  overflow-x-hidden;
   }
 }
