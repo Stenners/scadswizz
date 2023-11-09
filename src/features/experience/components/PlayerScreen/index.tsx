@@ -1,15 +1,20 @@
-import { useState } from "react";
+// import { useState } from "react";
+import { RefObject, useState } from "react";
 import { FadeIn } from "../../../../common/FadeIn";
 //import { InView } from "../../../../common/InView";
 import { useExperienceContext } from "../../../../context/ExperienceProvider";
 import { AudioPlayer } from "../../../audio/components/AudioPlayer";
-import { PlayerBar } from "../../../audio/components/PlayerBar";
+// import { PlayerBar } from "../../../audio/components/PlayerBar";
+import AudioVisualizer from "../../../audio/components/Visualizer";
 
 export const PlayerScreen = () => {
   const { streamUrl } = useExperienceContext();
   //   const [audioEnded, setAudioEnded] = useState(false);
-  const [audioDuration, setAudioDuration] = useState(0);
-  const [audioTime, setAudioTime] = useState(0);
+  //   const [audioDuration, setAudioDuration] = useState(0);
+  //const [audioTime, setAudioTime] = useState(0);
+  const [audioRef, setAudioRef] = useState<RefObject<HTMLAudioElement> | null>(
+    null
+  );
 
   console.log("streamUrl: ", streamUrl);
 
@@ -44,8 +49,9 @@ export const PlayerScreen = () => {
               <FadeIn direction="up" delay={1}>
                 <AudioPlayer
                   src={streamUrl}
-                  onTimeUpdate={(time) => setAudioTime(time)}
-                  onDurationUpdate={(time) => setAudioDuration(time)}
+                  onTimeUpdate={(time) => {}}
+                  onDurationUpdate={(time) => {}}
+                  onSetAudioRef={(audioRef) => setAudioRef(audioRef)}
                 />
               </FadeIn>
             </div>
@@ -60,7 +66,7 @@ export const PlayerScreen = () => {
                 </p>
               </FadeIn>
               <FadeIn direction="up" delay={1 + 0.45}>
-                <PlayerBar time={audioTime} duration={audioDuration} />
+                <AudioVisualizer audioRef={audioRef} played={true} />
               </FadeIn>
             </div>
           </div>

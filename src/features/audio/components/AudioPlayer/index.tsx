@@ -1,21 +1,22 @@
-import { useEffect, useRef, useState } from "react";
+import { RefObject, useEffect, useRef, useState } from "react";
 import { PlayButton } from "../../../../common/PlayButton";
 import { detachAndDestroy, initialise } from "../../util/hlsLoader";
-// import AudioVisualizer from "../Visualizer";
 
 interface AudioPlayerProps {
   src: string;
   onTimeUpdate: (time: number) => void;
   onDurationUpdate: (time: number) => void;
+  onSetAudioRef: (audioRef: RefObject<HTMLAudioElement>) => void;
 }
 
 export const AudioPlayer: React.FC<AudioPlayerProps> = ({
   src,
   onTimeUpdate,
   onDurationUpdate,
+  onSetAudioRef,
 }) => {
   const audioRef = useRef<HTMLAudioElement>(null);
-  //const [played, setPlayed] = useState(false);
+  // const [played, setPlayed] = useState(false);
   const [playing, setPlaying] = useState(false);
 
   useEffect(() => {
@@ -30,6 +31,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
     audioRef.current.onloadeddata = () => {
       onDurationUpdate(audioRef?.current?.duration ?? 0);
     };
+    onSetAudioRef(audioRef);
   });
 
   const handlePlay = () => {
@@ -57,7 +59,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
       <audio src={src} ref={audioRef}>
         Your browser does not support the audio element.
       </audio>
-      {/* <AudioVisualizer audioRef={audioRef} played={played} /> */}
+      {/* <AudioVisualizer audioRef={audioRef} played={true} /> */}
       <PlayButton
         className="h-[100px] w-[100px]"
         onClick={playing ? handlePause : handlePlay}

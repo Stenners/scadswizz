@@ -1,9 +1,7 @@
-import React, { useRef, useEffect, useState } from "react";
-
-//
+import React, { useRef, useEffect } from "react";
 
 interface AudioVisualizerProps {
-  audioRef: React.RefObject<HTMLAudioElement>;
+  audioRef: React.RefObject<HTMLAudioElement> | null;
   played: boolean;
 }
 
@@ -12,64 +10,78 @@ const AudioVisualizer: React.FC<AudioVisualizerProps> = ({
   played = false,
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  let audioContext: AudioContext;
+  const audioContextRef = useRef<AudioContext | null>(null); // useRef to store the AudioContext
 
   useEffect(() => {
     const setupAudioContext = async () => {
-      //setInit(true);
-      if (played && audioRef.current && canvasRef.current) {
-        audioContext = new ((window as any).AudioContext ||
-          (window as any).webkitAudioContext)();
+      if (played && audioRef?.current && canvasRef.current) {
+        if (!audioContextRef.current) {
+          audioContextRef.current = new ((window as any).AudioContext ||
+            (window as any).webkitAudioContext)();
+        }
 
-        const source = audioContext.createMediaElementSource(audioRef.current);
-        const analyser = audioContext.createAnalyser();
+        // Make sure audioContextRef.current is not null before continuing
+        if (audioContextRef.current) {
+          const source = audioContextRef.current.createMediaElementSource(
+            audioRef.current
+          );
+          const analyser = audioContextRef.current.createAnalyser();
 
-        source.connect(analyser);
-        analyser.connect(audioContext.destination);
+          source.connect(analyser);
+          analyser.connect(audioContextRef.current.destination);
 
-        analyser.fftSize = 128; // Change this value if you want more or less bars
-        const bufferLength = analyser.frequencyBinCount;
-        const dataArray = new Uint8Array(bufferLength);
+          analyser.fftSize = 2048;
+          const bufferLength = analyser.fftSize;
+          const dataArray = new Uint8Array(bufferLength);
 
-        const canvas = canvasRef.current;
-        const canvasCtx = canvas.getContext("2d");
+          const canvas = canvasRef.current;
+          const canvasCtx = canvas.getContext("2d");
 
-        if (canvasCtx) {
-          const draw = () => {
-            if (audioContext.state === "running") {
-              const WIDTH = canvas.width;
-              const HEIGHT = canvas.height;
+          if (canvasCtx) {
+            const draw = () => {
+              // Make sure audioContextRef.current is not null before calling its methods
+              if (
+                audioContextRef.current &&
+                audioContextRef.current.state === "running"
+              ) {
+                const WIDTH = canvas.width;
+                const HEIGHT = canvas.height;
 
-              requestAnimationFrame(draw);
+                requestAnimationFrame(draw);
 
-              analyser.getByteTimeDomainData(dataArray);
+                analyser.getByteTimeDomainData(dataArray);
 
-              canvasCtx.fillStyle = "rgb(241 245 249)";
-              canvasCtx.fillRect(0, 0, WIDTH, HEIGHT);
+                canvasCtx.fillStyle = "rgb(241 245 249)";
+                canvasCtx.fillRect(0, 0, WIDTH, HEIGHT);
 
-              const barWidth = (WIDTH / bufferLength) * 1;
-              let barHeight;
-              let x = 0;
+                canvasCtx.lineWidth = 2;
+                canvasCtx.strokeStyle = "rgb(238, 44, 115)";
 
-              for (let i = 0; i < bufferLength; i++) {
-                barHeight = dataArray[i];
+                canvasCtx.beginPath();
 
-                //52 211 153
-                canvasCtx.fillStyle =
-                  "rgb(" + (52 + (barHeight * 2) / 100) + ",211,153)";
-                canvasCtx.fillRect(
-                  x,
-                  HEIGHT - barHeight / 2,
-                  barWidth,
-                  barHeight / 2
-                );
+                const sliceWidth = (WIDTH * 1.0) / bufferLength;
+                let x = 0;
 
-                x += barWidth + 1;
+                for (let i = 0; i < bufferLength; i++) {
+                  const v = dataArray[i] / 128.0;
+                  const y = (v * HEIGHT) / 2;
+
+                  if (i === 0) {
+                    canvasCtx.moveTo(x, y);
+                  } else {
+                    canvasCtx.lineTo(x, y);
+                  }
+
+                  x += sliceWidth;
+                }
+
+                canvasCtx.lineTo(WIDTH, HEIGHT / 2);
+                canvasCtx.stroke();
               }
-            }
-          };
+            };
 
-          draw();
+            draw();
+          }
         }
       }
     };
@@ -77,13 +89,14 @@ const AudioVisualizer: React.FC<AudioVisualizerProps> = ({
     setupAudioContext();
 
     return () => {
-      audioContext?.close();
+      audioContextRef.current?.close();
+      audioContextRef.current = null;
     };
   }, [played, audioRef]);
 
   return (
     <>
-      <canvas ref={canvasRef} className="w-full" />
+      <canvas ref={canvasRef} className="w-full h-12" />
     </>
   );
 };
