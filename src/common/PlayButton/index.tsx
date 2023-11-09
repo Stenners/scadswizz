@@ -20,9 +20,9 @@ export const PlayButton: React.FC<PlayButtonProps> = ({
       {...rest}
     >
       {playing ? (
-        <img src="/pause.svg" height="30px" width="30px" />
+        <img alt="" src="/pause.svg" height="30px" width="30px" />
       ) : (
-        <img src="/play.svg" height="30px" width="30px" />
+        <img alt="" src="/play.svg" height="30px" width="30px" />
       )}
     </button>
   );
