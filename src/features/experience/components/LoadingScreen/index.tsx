@@ -11,7 +11,7 @@ const getStepContent = (step: number) => {
             <div className="mr-2">
               <Loader />{" "}
             </div>
-            Noice, you made it...
+            noice, you're in...
           </div>
         </FadeIn>
       );
@@ -23,7 +23,7 @@ const getStepContent = (step: number) => {
             <div className="mr-2">
               <Loader />{" "}
             </div>
-            Getting some stuff together...
+            fetching your unique stream...
           </div>
         </FadeIn>
       );
@@ -34,14 +34,14 @@ const getStepContent = (step: number) => {
             <div className="mr-2">
               <Loader />{" "}
             </div>
-            hang in there... a few more seconds
+            hang in there... just cleaning up
           </div>
         </FadeIn>
       );
     case 3:
       return (
         <FadeIn key={4}>
-          Almost there, just putting some stuff together...
+          almost there, just putting some stuff together...
         </FadeIn>
       );
     default:

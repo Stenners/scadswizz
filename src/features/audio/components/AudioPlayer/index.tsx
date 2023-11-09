@@ -41,9 +41,6 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
     detachAndDestroy();
     initialise(audioRef.current, src);
     audioRef.current.play();
-    // const play = Promise.resolve(audioRef.current.play());
-    // await play();
-    //audioRef.current.play();
   };
 
   const handlePause = () => {
