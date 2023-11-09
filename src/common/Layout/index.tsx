@@ -6,7 +6,7 @@ interface LayoutProps extends React.PropsWithChildren {}
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <Transition>
-      <div className="p-2 md:p-0 min-h-screen">
+      <div className="p-2 md:p-0">
         <header className="h-14 w-full flex space-between fixed">
           <div className="h-full relative text-xs opacity-50">
             Project Papyrus v1.0
