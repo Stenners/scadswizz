@@ -14,7 +14,7 @@ const ExperienceContext = createContext<ExperienceContextValue>(
 interface ExperienceProviderProps extends React.PropsWithChildren {}
 
 const sleep = () =>
-  new Promise((resolve) => setTimeout(() => resolve(true), 2000));
+  new Promise((resolve) => setTimeout(() => resolve(true), 1000));
 
 export const ExperienceProvider: React.FC<ExperienceProviderProps> = ({
   children,
