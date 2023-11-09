@@ -23,6 +23,9 @@ export const LoginForm: React.FC = () => {
   };
 
   const handleUpdateEmail = (e: React.FormEvent<HTMLInputElement>) => {
+    if (error) {
+      setError(null);
+    }
     setEmail(e.currentTarget.value);
   };
 
