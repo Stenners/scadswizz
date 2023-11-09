@@ -33,10 +33,10 @@ export const ExperienceProvider: React.FC<ExperienceProviderProps> = ({
     setStreams((prev) => [...prev, stream1UrlRes]);
     incrementStep();
 
-    const stream2UrlRes = await getStreamUrl();
-    await sleep();
-    setStreams((prev) => [...prev, stream2UrlRes]);
-    incrementStep();
+    // const stream2UrlRes = await getStreamUrl();
+    // await sleep();
+    // setStreams((prev) => [...prev, stream2UrlRes]);
+    // incrementStep();
 
     await sleep();
 
@@ -48,7 +48,7 @@ export const ExperienceProvider: React.FC<ExperienceProviderProps> = ({
   };
 
   const getStreamUrl = async () => {
-    return "";
+    return "/audio/5mg.mp3";
   };
 
   const start = () => {
@@ -64,8 +64,6 @@ export const ExperienceProvider: React.FC<ExperienceProviderProps> = ({
     ready,
     streams,
   };
-
-  console.log(value);
 
   return (
     <ExperienceContext.Provider value={value}>

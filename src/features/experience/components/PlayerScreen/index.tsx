@@ -7,7 +7,7 @@ export const PlayerScreen = () => {
 
   const renderStreams = () => {
     return streams.map((stream, index) => {
-      const baseDelay = 0.15 * (index + 3);
+      const baseDelay = 0.15 * (index + 4);
       return (
         <div className="flex w-full">
           <div>
@@ -15,9 +15,17 @@ export const PlayerScreen = () => {
               <AudioPlayer src={stream} />
             </FadeIn>
           </div>
-          <FadeIn direction="left" delay={baseDelay + 0.15}>
-            <div className="grow">test</div>
-          </FadeIn>
+          <div className="grow p-2">
+            <FadeIn delay={baseDelay + 0.15}>
+              <h2 className="font-semibold">Test audio 1</h2>
+            </FadeIn>
+            <FadeIn direction="left" delay={baseDelay + 0.3}>
+              <p className="text-sm opacity-75">
+                This is an exmaple audio stream with an audio ad coming from our
+                custom server
+              </p>
+            </FadeIn>
+          </div>
         </div>
       );
     });
@@ -25,12 +33,19 @@ export const PlayerScreen = () => {
 
   return (
     <div>
-      <FadeIn>
-        <h1 className="text-3xl font-bold mb-2">
-          You are now listening to SCADSWIZZ radio
+      <FadeIn delay={0.15}>
+        <h1 className="text-5xl font-bold mb-3 text-gray-500">
+          <FadeIn delay={0.45}>
+            <span className="text-black">you're</span>
+          </FadeIn>{" "}
+          now listening to{" "}
+          <FadeIn delay={0.75} direction="left">
+            <strong className="text-emerald-500">SCADSWIZZ</strong>
+          </FadeIn>{" "}
+          radio
         </h1>
       </FadeIn>
-      <FadeIn direction="up">
+      <FadeIn direction="left" delay={0.3}>
         <p className="text-sm">
           Below are two identical streams. One stream contains an ad served from
           our legacy ad server, the other comes from our custom purpose built

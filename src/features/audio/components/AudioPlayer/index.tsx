@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Button } from "../../../../common/Button";
+import { PlayButton } from "../../../../common/PlayButton";
 // import AudioVisualizer from "../Visualizer";
 
 interface AudioPlayerProps {
@@ -7,6 +7,7 @@ interface AudioPlayerProps {
 }
 
 export const AudioPlayer: React.FC<AudioPlayerProps> = ({ src }) => {
+  console.log(src);
   const audioRef = useRef<HTMLAudioElement>(null);
   //const [played, setPlayed] = useState(false);
   const [playing, setPlaying] = useState(false);
@@ -25,7 +26,6 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({ src }) => {
       console.error("current is not available on audioRef");
       return;
     }
-    //setPlayed(true);
     audioRef.current.play();
   };
 
@@ -44,9 +44,11 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({ src }) => {
         Your browser does not support the audio element.
       </audio>
       {/* <AudioVisualizer audioRef={audioRef} played={played} /> */}
-      <Button onClick={playing ? handlePause : handlePlay}>
-        {playing ? "pause" : "play"}
-      </Button>
+      <PlayButton
+        className="h-[100px] w-[100px]"
+        onClick={playing ? handlePause : handlePlay}
+        playing={playing}
+      />
     </>
   );
 };
