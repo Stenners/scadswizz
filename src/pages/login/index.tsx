@@ -12,7 +12,7 @@ export const LoginPage = () => {
           }}
         />
       </div>
-      <div className="w-full h-full relative flex items-center justify-center pt-12">
+      <div className="w-full h-full relative flex items-center justify-center">
         <LoginForm />
       </div>
     </>
