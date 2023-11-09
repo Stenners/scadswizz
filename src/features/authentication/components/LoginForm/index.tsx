@@ -45,15 +45,20 @@ export const LoginForm: React.FC = () => {
         height="auto"
         width="50%"
         alt="listnrlogo"
-        className="mb-10"
+        className="mb-5"
       />
       <FadeIn delay={0.15}>
-        <p className="text-center mb-10 w-full w-full">
-          Welcome to the <strong>SCADSWIZZ</strong> demo
-          <br />
-          <br /> Let's get started, try signing in with your{" "}
-          <strong>SCA</strong> email!
-        </p>
+        <div className="text-center w-full w-full">
+          <h1 className="text-xl">
+            <strong className="text-emerald-500">SCADSWIZZ</strong>
+            <br />
+          </h1>
+          <p className="mb-10 opacity-50 text-sm">(demo)</p>
+          <p className="mb-5">
+            Let's get started! Try signing in with your <strong>SCA</strong>{" "}
+            email...
+          </p>
+        </div>
       </FadeIn>
       <form className="w-full">
         <FadeIn delay={0.3} direction="up">
