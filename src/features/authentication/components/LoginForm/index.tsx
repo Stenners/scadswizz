@@ -36,6 +36,8 @@ export const LoginForm: React.FC = () => {
     setEmail(e.currentTarget.value);
   };
 
+  const disabled = !email || !!error;
+
   return (
     <div className="py-12 w-full md:w-1/2 lg:w-1/3 xl:w-1/4 flex items-center flex-col z-20">
       <img
@@ -67,11 +69,11 @@ export const LoginForm: React.FC = () => {
         <FadeIn delay={0.45} direction="up">
           <div className="h-full">
             <Button
-              className="h-full"
+              className="h-full uppercase font-semibold text-sm"
               onClick={handleSubmit}
-              disabled={!email || !!error}
+              disabled={disabled}
             >
-              Get Started
+              {!disabled ? "Login" : " 🔒 login"}
             </Button>
           </div>
         </FadeIn>
