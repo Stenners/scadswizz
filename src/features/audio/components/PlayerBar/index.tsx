@@ -1,8 +1,9 @@
 const formatSeconds = (seconds: number) => {
-  const pad = (num: number) => String(num).padStart(2, "0");
-  const minutes = Math.floor(seconds / 60);
-  const remainingSeconds = seconds % 60;
-  return `${pad(minutes)}:${pad(remainingSeconds)}`;
+  //   const pad = (num: number) => String(num).padStart(2, "0");
+  //   const minutes = Math.floor(seconds / 60);
+  //   const remainingSeconds = seconds % 60;
+  //   return `${pad(minutes)}:${pad(remainingSeconds)}`;
+  return seconds.toFixed(2);
 };
 
 export const PlayerBar: React.FC<{ duration: number; time: number }> = ({
