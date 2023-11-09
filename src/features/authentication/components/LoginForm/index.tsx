@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Button } from "../../../../common/Button";
-import Logo from "../../../../common/Logo";
 import { TextInput } from "../../../../common/TextInput";
 import { useNavigate } from "react-router-dom";
 
@@ -20,8 +19,8 @@ export const LoginForm: React.FC = () => {
   };
 
   return (
-    <div className="py-12 w-full md:w-1/2 lg:w-1/3 xl:w-1/4 flex items-center flex-col">
-      <Logo />
+    <div className="py-12 w-full md:w-1/2 lg:w-1/3 xl:w-1/4 flex items-center flex-col z-20">
+      <img src="/logo.svg" height="auto" width="50%" alt="listnrlogo" />
       <p className="text-center mt-6 mb-5 w-full w-full">
         Welcome to the custom ad server demo. Use your sca email address to
         access the portal.
@@ -36,7 +35,7 @@ export const LoginForm: React.FC = () => {
           />
         </div>
         <div className="h-full">
-          <Button className="h-full" onClick={handleSubmit}>
+          <Button className="h-full" onClick={handleSubmit} disabled={!email}>
             Get Started
           </Button>
         </div>
