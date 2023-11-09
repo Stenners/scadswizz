@@ -4,10 +4,15 @@ import { PlayButton } from "../../../../common/PlayButton";
 
 interface AudioPlayerProps {
   src: string;
+  onTimeUpdate: (time: number) => void;
+  onDurationUpdate: (time: number) => void;
 }
 
-export const AudioPlayer: React.FC<AudioPlayerProps> = ({ src }) => {
-  console.log(src);
+export const AudioPlayer: React.FC<AudioPlayerProps> = ({
+  src,
+  onTimeUpdate,
+  onDurationUpdate,
+}) => {
   const audioRef = useRef<HTMLAudioElement>(null);
   //const [played, setPlayed] = useState(false);
   const [playing, setPlaying] = useState(false);
@@ -19,6 +24,11 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({ src }) => {
 
     audioRef.current.onplay = () => setPlaying(true);
     audioRef.current.onpause = () => setPlaying(false);
+    audioRef.current.ontimeupdate = (e: any) =>
+      onTimeUpdate(e.target.currentTime);
+    audioRef.current.onloadeddata = () => {
+      onDurationUpdate(audioRef?.current?.duration ?? 0);
+    };
   }, []);
 
   const handlePlay = () => {
