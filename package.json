@@ -47,6 +47,7 @@
   },
   "devDependencies": {
     "@types/hls.js": "^1.0.0",
+    "@types/validator": "^13.11.6",
     "tailwindcss": "^3.3.5"
   }
 }
