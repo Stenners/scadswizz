@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { AudioPlayer } from "../../features/audio/components/AudioPlayer";
+import { ExperienceProvider } from "../../context/ExperienceProvider";
+import { Experience } from "../../features/experience/components/Experience";
 
 export const HomePage = () => {
   const [searchParams] = useSearchParams();
@@ -14,13 +15,8 @@ export const HomePage = () => {
   });
 
   return (
-    <div className="w-full flex justify-center">
-      <div className="py-12 w-full md:w-1/2 lg:w-1/3 xl:w-1/4 flex items-center justify-center flex-col">
-        <AudioPlayer
-          src={`
-        /audio/5mg.mp3`}
-        />
-      </div>
-    </div>
+    <ExperienceProvider>
+      <Experience />
+    </ExperienceProvider>
   );
 };
