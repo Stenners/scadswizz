@@ -6,14 +6,12 @@ interface LayoutProps extends React.PropsWithChildren {}
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
   const location = useLocation();
 
-  console.log(location.pathname);
-
   return (
     <Transition>
       <div className="p-2 md:p-0">
         <header className="h-14 w-full flex justify-between">
           <div className="h-full relative text-xs opacity-50">
-            Project Papyrus v1.0
+            Project Papyrus alpha v0.0.0.1 (not even near finished)
           </div>
           {location.pathname !== "/login" && (
             <a className="h-full" href="/login">

@@ -1,14 +1,43 @@
 import { FadeIn } from "../../../../common/FadeIn";
+import { Loader } from "../../../../common/Loader";
 import { useExperienceContext } from "../../../../context/ExperienceProvider";
 
 const getStepContent = (step: number) => {
   switch (step) {
     case 0:
-      return <FadeIn key={1}>Noice, you're in</FadeIn>;
+      return (
+        <FadeIn key={1}>
+          <div className="flex items-center">
+            <div className="mr-2">
+              <Loader />{" "}
+            </div>
+            Noice, you made it...
+          </div>
+        </FadeIn>
+      );
     case 1:
-      return <FadeIn key={2}>Getting some stuff together</FadeIn>;
+      return (
+        <FadeIn key={2}>
+          {" "}
+          <div className="flex items-center">
+            <div className="mr-2">
+              <Loader />{" "}
+            </div>
+            Getting some stuff together...
+          </div>
+        </FadeIn>
+      );
     case 2:
-      return <FadeIn key={3}>Grabbing some streams</FadeIn>;
+      return (
+        <FadeIn key={3}>
+          <div className="flex items-center">
+            <div className="mr-2">
+              <Loader />{" "}
+            </div>
+            hang in there... a few more seconds
+          </div>
+        </FadeIn>
+      );
     case 3:
       return (
         <FadeIn key={4}>

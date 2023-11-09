@@ -14,7 +14,7 @@ const ExperienceContext = createContext<ExperienceContextValue>(
 interface ExperienceProviderProps extends React.PropsWithChildren {}
 
 const sleep = () =>
-  new Promise((resolve) => setTimeout(() => resolve(true), 3000));
+  new Promise((resolve) => setTimeout(() => resolve(true), 2000));
 
 export const ExperienceProvider: React.FC<ExperienceProviderProps> = ({
   children,
@@ -36,6 +36,10 @@ export const ExperienceProvider: React.FC<ExperienceProviderProps> = ({
     const stream2UrlRes = await getStreamUrl();
     await sleep();
     setStreams((prev) => [...prev, stream2UrlRes]);
+    incrementStep();
+
+    await sleep();
+
     incrementStep();
 
     await sleep();
