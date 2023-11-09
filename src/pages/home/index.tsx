@@ -11,6 +11,7 @@ export const HomePage = () => {
     const eid = searchParams.get("eid");
     if (!eid) {
       navigate("/login");
+      return;
     }
   });
 

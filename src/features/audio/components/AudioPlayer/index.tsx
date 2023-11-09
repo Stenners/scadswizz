@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { PlayButton } from "../../../../common/PlayButton";
+import { detachAndDestroy, initialise } from "../../util/hlsLoader";
 // import AudioVisualizer from "../Visualizer";
 
 interface AudioPlayerProps {
@@ -36,7 +37,13 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
       console.error("current is not available on audioRef");
       return;
     }
+
+    detachAndDestroy();
+    initialise(audioRef.current, src);
     audioRef.current.play();
+    // const play = Promise.resolve(audioRef.current.play());
+    // await play();
+    //audioRef.current.play();
   };
 
   const handlePause = () => {

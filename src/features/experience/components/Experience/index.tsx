@@ -4,7 +4,7 @@ import { LoadingScreen } from "../LoadingScreen";
 import { PlayerScreen } from "../PlayerScreen";
 import { Transition } from "../../../../common/Transition";
 
-export const Experience = () => {
+export const Experience: React.FC = () => {
   const { start, ready } = useExperienceContext();
 
   useEffect(() => {

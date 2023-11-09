@@ -1,10 +1,12 @@
+import axios from "axios";
 import React, { createContext, useState, useContext } from "react";
+import { useSearchParams } from "react-router-dom";
 
 interface ExperienceContextValue {
   start: () => void;
   step: number;
   ready: boolean;
-  streams: string[];
+  streamUrl: string;
 }
 
 const ExperienceContext = createContext<ExperienceContextValue>(
@@ -19,24 +21,19 @@ const sleep = () =>
 export const ExperienceProvider: React.FC<ExperienceProviderProps> = ({
   children,
 }) => {
+  const [searchParams] = useSearchParams();
   const [ready, setReady] = useState(false);
   const [started, setStarted] = useState(false);
   const [step, setStep] = useState(0);
-
-  const [streams, setStreams] = useState<string[]>([]);
+  const [streamUrl, setStreamUrl] = useState<string>("");
 
   const incrementStep = () => setStep((prev) => prev + 1);
 
   const runExperience = async () => {
     const stream1UrlRes = await getStreamUrl();
     await sleep();
-    setStreams((prev) => [...prev, stream1UrlRes]);
+    setStreamUrl(stream1UrlRes);
     incrementStep();
-
-    // const stream2UrlRes = await getStreamUrl();
-    // await sleep();
-    // setStreams((prev) => [...prev, stream2UrlRes]);
-    // incrementStep();
 
     await sleep();
 
@@ -48,7 +45,24 @@ export const ExperienceProvider: React.FC<ExperienceProviderProps> = ({
   };
 
   const getStreamUrl = async () => {
-    return "/audio/5mg.mp3";
+    const eid = searchParams.get("eid");
+
+    try {
+      const res = await axios.post(
+        "https://scadswizz.scalabs.io/session",
+        JSON.stringify(eid),
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      return res.data;
+    } catch (err) {
+      console.log(err);
+    }
+
+    return;
   };
 
   const start = () => {
@@ -62,7 +76,7 @@ export const ExperienceProvider: React.FC<ExperienceProviderProps> = ({
     start,
     step,
     ready,
-    streams,
+    streamUrl,
   };
 
   return (

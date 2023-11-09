@@ -78,7 +78,7 @@ export const LoginForm: React.FC = () => {
               onClick={handleSubmit}
               disabled={disabled}
             >
-              {!disabled ? "Login" : " 🔒 login"}
+              {!disabled ? "Login" : "login"}
             </Button>
           </div>
         </FadeIn>
