@@ -19,7 +19,6 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
             </a>
           )}
         </header>
-        <div className="h-14"></div>
         <main>
           <Outlet />
         </main>
