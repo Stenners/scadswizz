@@ -1,5 +1,4 @@
 import { FadeIn } from "../../../../common/FadeIn";
-import { Transition } from "../../../../common/Transition";
 import { useExperienceContext } from "../../../../context/ExperienceProvider";
 
 const getStepContent = (step: number) => {
