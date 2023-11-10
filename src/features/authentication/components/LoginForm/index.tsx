@@ -16,7 +16,7 @@ export const LoginForm: React.FC = () => {
 
     if (!validateEmail(email)) {
       setError(
-        "Hey! We need a valid email to sign you in, please enter a valid SCA email address"
+        "Hey! We need a valid email to sign you in, please use your SCA email address"
       );
     } else {
       navigate(`/?eid=${email}`);
