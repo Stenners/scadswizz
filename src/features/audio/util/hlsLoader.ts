@@ -45,6 +45,7 @@ export const extractArtistTitle = (trackInfo: string) => {
 
 export const extractTrackInfo = (data: FragParsingMetadataData) => {
   const trackData = data?.frag?.title || "";
+  const relUrl = data?.frag?.relurl ?? "";
 
   // this regular expresion uses a group feature to capture if existing in the following details title, artist and url
   // the first parameter captured is the full string follow by title, artist and url.
@@ -61,6 +62,7 @@ export const extractTrackInfo = (data: FragParsingMetadataData) => {
       artist: artistDetail,
       title: trackInfo,
       artworkUrl,
+      relUrl,
     };
   }
 
@@ -70,6 +72,7 @@ export const extractTrackInfo = (data: FragParsingMetadataData) => {
     artist,
     title,
     artworkUrl,
+    relUrl,
   };
 };
 
@@ -95,8 +98,10 @@ export const initialise = (
   hls.on(
     Hls.Events.FRAG_PARSING_METADATA,
     (event: Events, data: FragParsingMetadataData) => {
-      const { artist, title, artworkUrl } = extractTrackInfo(data);
+      const { artist, title, artworkUrl, relUrl } = extractTrackInfo(data);
       const audioEnded = checkAudioEnded(artworkUrl);
+
+      console.log(relUrl);
 
       if (audioEnded && updateTrackInfoAction) {
         updateTrackInfoAction("", "");
@@ -104,9 +109,8 @@ export const initialise = (
         return;
       }
 
-      if (title && previousTitle !== title && updateTrackInfoAction) {
-        previousTitle = title;
-        updateTrackInfoAction(artist, artworkUrl, title);
+      if (updateTrackInfoAction) {
+        updateTrackInfoAction(artist, artworkUrl, title, relUrl);
       }
     }
   );

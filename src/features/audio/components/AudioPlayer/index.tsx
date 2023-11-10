@@ -8,6 +8,7 @@ interface AudioPlayerProps {
   onDurationUpdate: (time: number) => void;
   onSetAudioRef: (audioRef: RefObject<HTMLAudioElement>) => void;
   onPlayed: () => void;
+  onSetRelUrl: (relUrl: string) => void;
 }
 
 export const AudioPlayer: React.FC<AudioPlayerProps> = ({
@@ -16,6 +17,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
   onDurationUpdate,
   onSetAudioRef,
   onPlayed,
+  onSetRelUrl,
 }) => {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [playing, setPlaying] = useState(false);
@@ -35,6 +37,15 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
     onSetAudioRef(audioRef);
   });
 
+  const updateTrackInfo = (
+    artist: string,
+    artworkUrl: string,
+    title: string,
+    relUrl: string
+  ) => {
+    onSetRelUrl(relUrl);
+  };
+
   const handlePlay = () => {
     if (!audioRef.current) {
       console.error("current is not available on audioRef");
@@ -42,7 +53,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
     }
 
     detachAndDestroy();
-    initialise(audioRef.current, src);
+    initialise(audioRef.current, src, updateTrackInfo);
     audioRef.current.play();
     onPlayed();
   };

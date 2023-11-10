@@ -1,4 +1,4 @@
-import { RefObject, useState } from "react";
+import { useState } from "react";
 import { FadeIn } from "../../../../common/FadeIn";
 import { useExperienceContext } from "../../../../context/ExperienceProvider";
 import { AudioPlayer } from "../../../audio/components/AudioPlayer";
@@ -9,12 +9,8 @@ interface PlayerScreenProps {
 
 export const PlayerScreen: React.FC<PlayerScreenProps> = ({ eid }) => {
   const { streamUrl } = useExperienceContext();
-  const [audioRef, setAudioRef] = useState<RefObject<HTMLAudioElement> | null>(
-    null
-  );
   const [played, setPlayed] = useState(false);
-
-  console.log(audioRef, played);
+  const [relUrl, setRelUrl] = useState("");
 
   const userNameLower = eid.split(".")[0];
   const userNameCapitalize =
@@ -52,12 +48,16 @@ export const PlayerScreen: React.FC<PlayerScreenProps> = ({ eid }) => {
                   src={streamUrl}
                   onTimeUpdate={(time) => {}}
                   onDurationUpdate={(time) => {}}
-                  onSetAudioRef={(audioRef) => setAudioRef(audioRef)}
+                  onSetAudioRef={(audioRef) => {}}
                   onPlayed={() => setPlayed(true)}
+                  onSetRelUrl={(relUrl) => setRelUrl(relUrl)}
                 />
               </FadeIn>
             </div>
             <div className="grow p-2">
+              <FadeIn direction="left" delay={1 + 0.3}>
+                <div className="text-xs opacity-50">{relUrl}</div>
+              </FadeIn>
               <FadeIn delay={1 + 0.15}>
                 <h2 className="font-semibold">
                   {userNameCapitalize}'s custom audio stream
@@ -71,7 +71,6 @@ export const PlayerScreen: React.FC<PlayerScreenProps> = ({ eid }) => {
                   </FadeIn>
                 )}
               </FadeIn>
-              <FadeIn direction="left" delay={1 + 0.3}></FadeIn>
             </div>
           </div>
         </div>
