@@ -56,7 +56,7 @@ export const PlayerScreen: React.FC<PlayerScreenProps> = ({ eid }) => {
             </div>
             <div className="grow p-2">
               <FadeIn direction="left" delay={1 + 0.3}>
-                <div className="text-xs opacity-50">{relUrl}</div>
+                <div className="text-xs opacity-50">fragrel {relUrl}</div>
               </FadeIn>
               <FadeIn delay={1 + 0.15}>
                 <h2 className="font-semibold">
