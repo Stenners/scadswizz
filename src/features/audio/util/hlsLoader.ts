@@ -1,7 +1,7 @@
 import Hls, { Events, FragParsingMetadataData } from "hls.js";
 
 let hls: Hls;
-let previousTitle: string;
+// let previousTitle: string;
 
 export const checkAudioEnded = (
   artworkUrl?: string,
@@ -101,8 +101,6 @@ export const initialise = (
       const { artist, title, artworkUrl, relUrl } = extractTrackInfo(data);
       const audioEnded = checkAudioEnded(artworkUrl);
 
-      console.log(relUrl);
-
       if (audioEnded && updateTrackInfoAction) {
         updateTrackInfoAction("", "");
 
@@ -118,7 +116,7 @@ export const initialise = (
 
 export function detachAndDestroy() {
   if (hls) {
-    previousTitle = "";
+    // previousTitle = "";
     hls.stopLoad();
     hls.detachMedia();
     hls.destroy();
